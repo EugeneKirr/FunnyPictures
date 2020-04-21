@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photo Viewer Controller-->
+        <scene sceneID="y35-wE-fPL">
+            <objects>
+                <viewController storyboardIdentifier="photoViewerController" id="h5O-LT-15I" customClass="PhotoViewerController" customModule="FunnyPictures" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1cU-mJ-6Fm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEV-Ek-tly" customClass="ViewerSubview" customModule="FunnyPictures" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="420"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxH-2g-KHb">
+                                <rect key="frame" x="0.0" y="420" width="320" height="60"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="p58-iB-tX8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Next Photo">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapNextPhotoButton:" destination="h5O-LT-15I" eventType="touchUpInside" id="9mw-Q9-rFS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="pxH-2g-KHb" firstAttribute="top" secondItem="bEV-Ek-tly" secondAttribute="bottom" id="19f-Yz-4bb"/>
+                            <constraint firstItem="pxH-2g-KHb" firstAttribute="bottom" secondItem="04i-br-nh8" secondAttribute="bottom" id="2Zf-zl-uG4"/>
+                            <constraint firstItem="pxH-2g-KHb" firstAttribute="leading" secondItem="04i-br-nh8" secondAttribute="leading" id="ZG7-Xj-PFO"/>
+                            <constraint firstItem="bEV-Ek-tly" firstAttribute="trailing" secondItem="04i-br-nh8" secondAttribute="trailing" id="acq-oD-1rF"/>
+                            <constraint firstItem="bEV-Ek-tly" firstAttribute="top" secondItem="04i-br-nh8" secondAttribute="top" id="cLK-8F-05e"/>
+                            <constraint firstItem="pxH-2g-KHb" firstAttribute="trailing" secondItem="04i-br-nh8" secondAttribute="trailing" id="cpQ-z8-KJH"/>
+                            <constraint firstItem="bEV-Ek-tly" firstAttribute="leading" secondItem="04i-br-nh8" secondAttribute="leading" id="yqB-lq-wtm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="04i-br-nh8"/>
+                    </view>
+                    <connections>
+                        <outlet property="viewerSubview" destination="bEV-Ek-tly" id="If6-sL-MoD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wwe-wS-Jxq" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="733.60000000000002" y="104.7976011994003"/>
+        </scene>
+    </scenes>
+</document>

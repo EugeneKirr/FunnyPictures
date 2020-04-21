@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Collection Viewer Controller-->
+        <scene sceneID="Qd3-4f-mXN">
+            <objects>
+                <viewController storyboardIdentifier="collectionViewerController" id="0UO-ne-XNt" customClass="CollectionViewerController" customModule="FunnyPictures" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2PK-eI-Bhn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebh-Lu-dqc" customClass="ViewerSubview" customModule="FunnyPictures" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="420"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rCN-hn-TCW">
+                                <rect key="frame" x="0.0" y="420" width="320" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47H-86-qhw">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="ixo-YT-SIf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="Previous">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapButton:" destination="0UO-ne-XNt" eventType="touchUpInside" id="YVq-fr-CKb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8B-JV-E0v">
+                                        <rect key="frame" x="160" y="0.0" width="160" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="nKg-wl-dwf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="Next">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapButton:" destination="0UO-ne-XNt" eventType="touchUpInside" id="c00-0n-YjP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rCN-hn-TCW" firstAttribute="top" secondItem="ebh-Lu-dqc" secondAttribute="bottom" id="2qi-dO-hEa"/>
+                            <constraint firstItem="ebh-Lu-dqc" firstAttribute="top" secondItem="75F-au-ZmX" secondAttribute="top" id="8hf-Uo-H7c"/>
+                            <constraint firstItem="rCN-hn-TCW" firstAttribute="leading" secondItem="75F-au-ZmX" secondAttribute="leading" id="LCE-1O-YQ2"/>
+                            <constraint firstItem="75F-au-ZmX" firstAttribute="trailing" secondItem="rCN-hn-TCW" secondAttribute="trailing" id="PDC-0b-00L"/>
+                            <constraint firstItem="75F-au-ZmX" firstAttribute="trailing" secondItem="ebh-Lu-dqc" secondAttribute="trailing" id="Q0V-IA-5Fy"/>
+                            <constraint firstItem="ebh-Lu-dqc" firstAttribute="leading" secondItem="75F-au-ZmX" secondAttribute="leading" id="fgY-v8-fwE"/>
+                            <constraint firstItem="rCN-hn-TCW" firstAttribute="bottom" secondItem="75F-au-ZmX" secondAttribute="bottom" id="sJq-3u-Jj9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="75F-au-ZmX"/>
+                    </view>
+                    <connections>
+                        <outlet property="nextButton" destination="E8B-JV-E0v" id="80X-Ax-eoe"/>
+                        <outlet property="previousButton" destination="47H-86-qhw" id="9qG-tZ-yXI"/>
+                        <outlet property="viewerSubview" destination="ebh-Lu-dqc" id="JFI-8C-iuJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uKz-cQ-kPm" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="402.39999999999998" y="125.4872563718141"/>
+        </scene>
+    </scenes>
+</document>
