@@ -26,3 +26,18 @@ extension Thumb {
     }
 }
 
+extension Thumb {
+    
+    static func createInstanceAsync(from rawPhotoData: RawPhotoData, completion: @escaping (Thumb) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            guard let thumbURL = URL(string: rawPhotoData.urls.thumb),
+                  let thumbData = try? Data(contentsOf: thumbURL),
+                  let thumbnail = UIImage(data: thumbData) else { return }
+            let thumb = Thumb(thumbnail: thumbnail)
+            DispatchQueue.main.async {
+                completion(thumb)
+            }
+        }
+    }
+    
+}

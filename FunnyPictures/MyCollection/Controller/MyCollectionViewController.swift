@@ -34,6 +34,7 @@ class MyCollectionViewController: UICollectionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         willDeleteCells = false
         self.collectionView.backgroundColor = fetchBackgroundColor()
         self.collectionView.reloadData()
@@ -58,17 +59,14 @@ class MyCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCollectionCell", for: indexPath) as? MyCollectionCell else { return UICollectionViewCell() }
-        cell.thumbImageView.image = UIImage(systemName: "photo")
-        cell.backgroundColor = fetchBackgroundColor()
-        cell.thumbImageView.contentMode = .scaleAspectFit
-        
         let id = myCollection.identifiers[indexPath.row]
         networkManager.fetchRawPhotoData(request: .byID(id)) { [weak self] (result: Result<RawPhotoData, NetworkError>) in
             switch result {
             case .success(let rawPhotoData):
-                let thumb = Thumb(rawPhotoData)
-                cell.thumbImageView.image = thumb.thumbnail
-                cell.thumbImageView.contentMode = .scaleAspectFill
+                Thumb.createInstanceAsync(from: rawPhotoData) { [weak cell] (thumb) in
+                    cell?.thumbImageView.image = thumb.thumbnail
+                    cell?.thumbImageView.contentMode = .scaleAspectFill
+                }
             case .failure(let networkError):
                 let errorDescription = networkError.errors[0]
                 self?.showErrorAlert(with: errorDescription)

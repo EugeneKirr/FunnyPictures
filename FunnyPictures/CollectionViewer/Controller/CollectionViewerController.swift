@@ -33,6 +33,7 @@ class CollectionViewerController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.view.backgroundColor = fetchBackgroundColor()
     }
     
@@ -56,8 +57,9 @@ class CollectionViewerController: UIViewController {
         networkManager.fetchRawPhotoData(request: .byID(id)) { [weak self] (result: Result<RawPhotoData, NetworkError>) in
             switch result {
             case .success(let rawPhotoData):
-                let photo = Photo(rawPhotoData)
-                self?.viewerSubview.updateView(with: photo)
+                Photo.createInstanceAsync(from: rawPhotoData) { [weak self] (photo) in
+                    self?.viewerSubview.updateView(with: photo)
+                }
             case .failure(let networkError):
                 let errorDescription = networkError.errors[0]
                 self?.showErrorAlert(with: errorDescription)

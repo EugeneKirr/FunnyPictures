@@ -12,4 +12,10 @@ class MyCollectionCell: UICollectionViewCell {
 
     @IBOutlet weak var thumbImageView: UIImageView!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        thumbImageView.image = UIImage(systemName: "photo")
+        thumbImageView.contentMode = .scaleAspectFit
+    }
+    
 }

@@ -41,3 +41,35 @@ extension Photo {
     }
     
 }
+
+extension Photo {
+    
+    init(_ rawPhotoData: RawPhotoData, _ image: UIImage) {
+        
+        self.id = rawPhotoData.id
+        self.description = rawPhotoData.altDescription
+        self.authorName = rawPhotoData.user.name
+        self.authorLocation = rawPhotoData.user.location
+        self.viewsCount = "\(rawPhotoData.views)"
+        self.likesCount = "\(rawPhotoData.likes)"
+        self.downloadsCount = "\(rawPhotoData.downloads)"
+        self.image = image
+    }
+    
+}
+
+extension Photo {
+    
+    static func createInstanceAsync(from rawPhotoData: RawPhotoData, completion: @escaping (Photo) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            guard let imageURL = URL(string: rawPhotoData.urls.regular),
+                  let imageData = try? Data(contentsOf: imageURL),
+                  let image = UIImage(data: imageData) else { return }
+            let photo = Photo(rawPhotoData, image)
+            DispatchQueue.main.async {
+                completion(photo)
+            }
+        }
+    }
+    
+}

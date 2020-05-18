@@ -31,6 +31,7 @@ class PhotoViewerController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.view.backgroundColor = fetchBackgroundColor()
     }
     
@@ -39,9 +40,10 @@ class PhotoViewerController: UIViewController {
         networkManager.fetchRawPhotoData(request: .randomPhoto(query)) { [weak self] (result: Result<RawPhotoData, NetworkError>) in
             switch result {
             case .success(let rawPhotoData):
-                let photo = Photo(rawPhotoData)
-                self?.photoID = photo.id
-                self?.viewerSubview.updateView(with: photo)
+                Photo.createInstanceAsync(from: rawPhotoData) { [weak self] (photo) in
+                    self?.photoID = photo.id
+                    self?.viewerSubview.updateView(with: photo)
+                }
             case .failure(let networkError):
                 let errorDescription = networkError.errors[0]
                 self?.showErrorAlert(with: errorDescription)
